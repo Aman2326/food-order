@@ -1,3 +1,8 @@
+<?php
+// Ensure the path to constants.php is correct
+include('../config/constants.php');  // Adjust path if necessary
+?>
+
 <html>
 
 <head>
@@ -11,7 +16,7 @@
         <div class="wrapper">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="manage-admin.php">admin</a></li>
+                <li><a href="manage-admin.php">Admin</a></li>
                 <li><a href="manage-category.php">Category</a></li>
                 <li><a href="manage-food.php">Food</a></li>
                 <li><a href="manage-order.php">Order</a></li>
@@ -19,3 +24,7 @@
         </div>
     </div>
     <!-- Menu Section Ends -->
+
+</body>
+
+</html>
