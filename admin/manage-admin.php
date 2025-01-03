@@ -12,6 +12,11 @@
             unset($_SESSION['add']); // Removing session message 
         }
 
+        if (isset($_SESSION['delete'])) {
+            echo $_SESSION['delete'];
+            unset($_SESSION['delete']);
+        }
+
         // Button to add admin
         ?>
         <a href="add-admin.php" class="btn-primary">Add Admin</a>
@@ -33,11 +38,11 @@
             $res = mysqli_query($conn, $sql);
 
             //check whether the query is executed or not
-            if ($res ==TRUE) {
+            if ($res == TRUE) {
                 // count rows to check whether we have data in databse or not
                 $rows = mysqli_num_rows($res); //function to get all the rows in database
 
-                $sn=1; // create a varaible and assign the values
+                $sn = 1; // create a varaible and assign the values
 
 
 
@@ -57,12 +62,12 @@
             ?>
 
                         <tr>
-                            <td><?php echo $sn++;?></td>
+                            <td><?php echo $sn++; ?></td>
                             <td><?php echo $full_name; ?></td>
-                            <td><?php echo $username;?></td>
+                            <td><?php echo $username; ?></td>
                             <td>
-                                <a href="#" class="btn-secondary">Update Admin</a>
-                                <a href="#" class="btn-danger">Delete Admin</a>
+                                <a href="<?php echo SITEURL; ?>/admin/update-admin.php?id=<?php echo $id ?>" class="btn-secondary">Update Admin</a>
+                                <a href="<?php echo SITEURL; ?>/admin/delete-admin.php?id=<?php echo $id ?>" class="btn-danger">Delete Admin</a>
                             </td>
                         </tr>
 
@@ -77,7 +82,7 @@
             }
             ?>
 
-            
+
         </table>
 
         <div class="clearfix"></div> <!-- To clear the floats -->
@@ -86,5 +91,3 @@
 <!-- Main Content Section Ends -->
 
 <?php include('partials/footer.php'); ?>
-
-

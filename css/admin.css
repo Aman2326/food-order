@@ -79,6 +79,14 @@ table tr td{
 
 }
 
+.sucess{
+    color: #2ED573;
+
+}
+.error{
+    color: #ff4757;
+}
+
 
 
 
