@@ -7,6 +7,7 @@
         <br />
 
         <?php
+
         if (isset($_SESSION['add'])) {
             echo $_SESSION['add'];
             unset($_SESSION['add']); // Removing session message 
@@ -17,8 +18,31 @@
             unset($_SESSION['delete']);
         }
 
-        // Button to add admin
+        if (isset($_SESSION['update'])) {
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
+        }
+
+        if (isset($_SESSION['user-not-found'])) {
+            echo $_SESSION['user-not-found'];
+            unset($_SESSION['user-not-found']);
+        }
+
+        // Corrected session key and added semicolon
+        if (isset($_SESSION['password-not-match'])) {
+            echo $_SESSION['password-not-match'];
+            unset($_SESSION['password-not-match']); // Fixed missing semicolon
+        }
+        if (isset($_SESSION['change-paswrd'])) {
+            echo $_SESSION['change-paswrd'];
+            unset($_SESSION['change-paswrd']);
+        }
+
         ?>
+
+        <br><br><br>
+
+        <!--button to add admin -->
         <a href="add-admin.php" class="btn-primary">Add Admin</a>
 
         <br /><br /><br />
@@ -32,10 +56,10 @@
             </tr>
 
             <?php
-            //qurey to get all admin
-            $sql = "SELECT * FROM tbl_admin";
-            //excuse the query
-            $res = mysqli_query($conn, $sql);
+
+            $sql = "SELECT * FROM tbl_admin"; //qurey to get all admin
+
+            $res = mysqli_query($conn, $sql);  //excuse the query
 
             //check whether the query is executed or not
             if ($res == TRUE) {
@@ -66,6 +90,7 @@
                             <td><?php echo $full_name; ?></td>
                             <td><?php echo $username; ?></td>
                             <td>
+                                <a href="<?php echo SITEURL; ?>/admin/update-password.php?id=<?php echo $id ?>" class="btn-primary">Change password</a>
                                 <a href="<?php echo SITEURL; ?>/admin/update-admin.php?id=<?php echo $id ?>" class="btn-secondary">Update Admin</a>
                                 <a href="<?php echo SITEURL; ?>/admin/delete-admin.php?id=<?php echo $id ?>" class="btn-danger">Delete Admin</a>
                             </td>

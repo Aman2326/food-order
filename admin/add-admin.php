@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
     // Get data from the form
     $full_name = $_POST['full_name'];
     $username = $_POST['username'];
-    $password = $_POST['password'];  // Password encryption (e.g., bcrypt, hash)
+    $password = md5($_POST['password']);  // Password encryption (e.g., bcrypt, hash)
 
     // SQL query to save data into the database
     $sql = "INSERT INTO tbl_admin SET
