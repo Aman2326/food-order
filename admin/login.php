@@ -17,6 +17,11 @@
             echo $_SESSION['login'];
             unset($_SESSION['login']);
         }
+          if(isset($_SESSION['no-login-message']))
+          {
+            echo $_SESSION['no-login-message'];
+            unset($_SESSION['no-login-message']);
+          }
         ?>
         <br><br>
 
@@ -66,8 +71,9 @@ if (isset($_POST['submit'])) {
     if ($count == true) {
         //user available and login succesfull
         $_SESSION['login'] = "<div class='sucess'>Login sucessful.</div>";
+        $_SESSION['user'] = $username; //tp check wheter the user loged in or not logout will unset it 
         //redirect to dash page
-        header('location:' . SITEURL . 'admin/');
+        header('location:' . SITEURL . '/admin/index.php');
     } else {
         //user not available and login fails
         $_SESSION['login'] = "<div class='error text-center'>username or password did not match.</div>";

@@ -4,53 +4,108 @@
     <div class="wrapper">
         <h1>Manage Category</h1>
 
-        <br /> 
+        <br />
+
+        <?php
+        if (isset($_SESSION['add'])) {
+            echo $_SESSION['add'];
+            unset($_SESSION['add']);
+        }
+        ?>
+        <br><br>
 
         <!-- Button to add admin -->
-        <a href="#" class="btn-primary">Add Category</a>
+        <a href="<?php echo SITEURL; ?>/admin/add-category.php" class="btn-primary">Add Category</a>
 
         <br /><br /><br />
 
         <table class="tbl-full">
             <tr>
                 <th>Sr.No</th>
-                <th>Full Name</th>
-                <th>Username</th>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Featured</th>
+                <th>Active</th>
                 <th>Actions</th>
             </tr>
 
-            <tr>
-                <td>1.</td>
-                <td>Misogynist 23</td>
-                <td>Misogamist 26</td>
-                <td>
-                    <a href="#" class="btn-secondary">Upadte Admin</a>
-                    <a href="#" class="btn-danger">Delete Admin</a>
+            <?php
+            $sql = "SELECT * FROM tbl_category";
 
-                </td>
-            </tr>
+            //execute query
+            $res = mysqli_query($conn, $sql);
 
-            <tr>
-                <td>2.</td>
-                <td>Misogynist 23</td>
-                <td>Misogamist 26</td>
-                <td>
-                    <a href="#" class="btn-secondary">Upadte Admin</a>
-                    <a href="#" class="btn-danger">Delete Admin</a>
-                </td>
-            </tr>
+            //count rows
+            $count = mysqli_num_rows($res);
 
-            <tr>
-                <td>3.</td>
-                <td>Misogynist 23</td>
-                <td>Misogamist 26</td>
-                <td>
+            //create serial number variable and assign as 1 
+            $sn = 1;
 
-                    <a href="#" class="btn-secondary">Upadte Admin</a>
-                    <a href="#" class="btn-danger">Delete Admin</a>
+            //check whtehr we have data in database or not
+            if ($count > 0) {
+                //we have data in database 
+                //get the data and display
+                while ($row = mysqli_fetch_assoc($res)) {
+                    $id = $row['id'];
+                    $title = $row['title'];
+                    $image_name = $row['image_name'];
+                    $Featured = $row['featured'];
+                    $active = $row['active'];
 
-                </td>
-            </tr>
+
+            ?>
+
+                    <tr>
+                        <td><?php echo $sn++; ?></td>
+                        <td><?php echo $title; ?></td>
+
+                        <td>
+                            <?php
+                            //check whether image name is availablr or not!
+                            if ($image_name != "") {
+                                //display the image
+                            ?>
+
+                                <img src="<?php echo SITEURL; ?>/images/category/<?php echo $image_name; ?>" width="130px">
+
+                            <?php
+                            } else {
+                                //display the msg 
+                                echo "<div class='error'>Image not added.</div>";
+                            }
+                            ?>
+                        </td>
+
+                        <td><?php echo $Featured; ?></td>
+                        <td><?php echo $active; ?></td>
+                        <td>
+                            <a href="#" class="btn-secondary">Upadte Category</a>
+                            <a href="<?php echo SITEURL; ?>/admin/delete-category.php" class="btn-danger">Delete Category</a>
+
+                        </td>
+                    </tr>
+
+
+                <?php
+                }
+            } else {
+
+                //we do not have data
+                //we well diaplay the msg inside the table 
+                ?>
+
+                <tr>
+                    <td colspan="6">
+                        <div class="error">No Category Added.</div>
+                    </td>
+                </tr>
+
+            <?php
+            }
+
+            ?>
+
+
         </table>
     </div>
 

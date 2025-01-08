@@ -1,6 +1,7 @@
 <?php
 // Ensure the path to constants.php is correct
 include('../config/constants.php');  // Adjust path if necessary
+include('login-check.php');
 ?>
 
 <html>
