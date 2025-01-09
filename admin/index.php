@@ -5,12 +5,12 @@
     <div class="wrapper">
         <h1>Dashboard</h1>
         <br><br>
-        <?php
+        <!-- <?php
         if (isset($_SESSION['login'])) {
             echo $_SESSION['login'];
             unset($_SESSION['login']);
         }
-        ?>
+        ?> -->
         <br><br>
 
         <!-- Categories Section -->
