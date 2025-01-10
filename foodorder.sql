@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 09, 2025 at 11:47 AM
+-- Generation Time: Jan 10, 2025 at 11:54 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -62,7 +62,10 @@ CREATE TABLE `tbl_category` (
 --
 
 INSERT INTO `tbl_category` (`id`, `title`, `image_name`, `featured`, `active`) VALUES
-(7, 'test1', 'Food-Category_181.jpg', 'No', 'No');
+(7, 'laptop', 'Food-Category_241.jpg', 'No', 'No'),
+(9, 'device', 'Food-Category_664.jpg', 'No', 'No'),
+(10, 'twst1', '', 'Yes', 'Yes'),
+(11, 'fqwdqwdqw', 'Food-Category_24.png', 'Yes', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -144,7 +147,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_category`
 --
 ALTER TABLE `tbl_category`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_food`
