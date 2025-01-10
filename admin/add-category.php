@@ -13,7 +13,7 @@
         }
 
         if (isset($_SESSION['upload'])) {
-            echo $_SESSION['uploadd'];
+            echo $_SESSION['upload'];
             unset($_SESSION['upload']);
         }
         ?>
@@ -100,31 +100,38 @@
                 //upload the image 
                 //to uplod image we need img name & source path and destination path
                 $image_name = $_FILES['image']['name'];
-                //auto rename our image 
-                //get the extension of our img (jpg,png,gif,) eg "specialfood1.jpg"
-                $ext = end(explode('.', $image_name));
+                
+                 //upload the image only if the image is selected
+                 if($image_name != "")
+                 {
 
-                //rename the image name 
-                $image_name = "Food-Category_" . rand(000, 999) . '.' . $ext; //eg food_Category_834.jpg
+                 
+                    //auto rename our image 
+                    //get the extension of our img (jpg,png,gif,) eg "specialfood1.jpg"
+                    $ext = end(explode('.', $image_name));
 
-                $source_path = $_FILES['image']['tmp_name'];
+                    //rename the image name 
+                    $image_name = "Food-Category_" . rand(000, 999) . '.' . $ext; //eg food_Category_834.jpg
+                    
+                    $source_path = $_FILES['image']['tmp_name'];
 
 
-                $destination_path = "../images/category/" . $image_name;
+                    $destination_path = "../images/category/" . $image_name;
 
-                //finally upload the img
-                $upload = move_uploaded_file($source_path, $destination_path);
-                // var_dump($upload);
-                // exit();
-                //check whether the image upload or !
-                //& if the img ! upload thn stop and redirect wirht error msg 
-                if ($upload == false) {
-                    //set msg
-                    $_SESSION['upload'] = "<div class='error'>Failed to upload image</div>";
-                    //redierct to add category pgre
-                    header('loaction:' . SITEURL . '/admin/add-category.php');
-                    //stop process
-                    die();
+                    //finally upload the img
+                    $upload = move_uploaded_file($source_path, $destination_path);
+                    // var_dump($upload);
+                    // exit();
+                    //check whether the image upload or !
+                    //& if the img ! upload thn stop and redirect wirht error msg 
+                    if ($upload == false) {
+                        //set msg
+                        $_SESSION['upload'] = "<div class='error'>Failed to upload image</div>";
+                        //redierct to add category pgre
+                        header('loaction:' . SITEURL . '/admin/add-category.php');
+                        //stop process
+                        die();
+                    }
                 }
             } else {
                 //do nto upload the image and set the image_name value as blank

@@ -22,6 +22,24 @@
             unset($_SESSION['delete']);
         }
 
+        if(isset($_SESSION['no-category-found']))
+        {
+            echo $_SESSION['no-category-found'];
+            unset($_SESSION['no-category-found']);
+        }
+
+        if(isset($_SESSION['update']))
+        {
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
+        }
+
+        if(isset($_SESSION['upload']))
+        {
+            echo $_SESSION['upload'];
+            unset($_SESSION['upload']);
+        }
+
         ?>
         <br><br>
 
@@ -90,7 +108,7 @@
                         <td><?php echo $Featured; ?></td>
                         <td><?php echo $active; ?></td>
                         <td>
-                            <a href="<?php echo SITEURL;?>/admin/update-category.php" class="btn-secondary">update category</a>
+                            <a href="<?php echo SITEURL;?>/admin/update-category.php?id=<?php echo $id; ?>" class="btn-secondary">update category</a>
                             <a href="<?php echo SITEURL; ?>/admin/delete-category.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-danger">Delete Category</a>
 
                         </td>
@@ -107,7 +125,7 @@
 
                 <tr>
                     <td colspan="6">
-                        <div class="error">No Category Added.</div>
+                        <div class="error">.</div>
                     </td>
                 </tr>
 
