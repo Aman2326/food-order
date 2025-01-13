@@ -4,54 +4,115 @@
     <div class="wrapper">
         <h1>Manage Food</h1>
 
-        <br /> 
+        <br />
+
 
         <!-- Button to add admin -->
         <a href="<?php echo SITEURL; ?>/admin/add-food.php" class="btn-primary">Add Food</a>
 
-        
+
         <br /><br /><br />
+
+        <?php
+        if (isset($_SESSION['add'])) {
+            echo $_SESSION['add'];
+            unset($_SESSION['add']);
+        }
+
+        if(isset($_SESSION['delete']))
+        {
+            echo $_SESSION['delete'];
+            unset($_SESSION['delete']);
+        }
+
+        if(isset($_SESSION['unauthorize']))
+        {
+            echo $_SESSION['unauthorize'];
+            unset($_SESSION['unauthorize']);
+        }
+
+        ?>
 
         <table class="tbl-full">
             <tr>
                 <th>Sr.No</th>
-                <th>Full Name</th>
-                <th>Username</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Featured</th>
+                <th>Active</th>
                 <th>Actions</th>
             </tr>
 
-            <tr>
-                <td>1.</td>
-                <td>Misogynist 23</td>
-                <td>Misogamist 26</td>
-                <td>
-                    <a href="#" class="btn-secondary">Upadte Admin</a>
-                    <a href="#" class="btn-danger">Delete Admin</a>
+            <?php
+            //create a sql query to get all the food
+            $sql = "SELECT * FROM tbl_food";
+            //execute the query
 
-                </td>
-            </tr>
+            $res = mysqli_query($conn, $sql);
 
-            <tr>
-                <td>2.</td>
-                <td>Misogynist 23</td>
-                <td>Misogamist 26</td>
-                <td>
-                    <a href="#" class="btn-secondary">Upadte Admin</a>
-                    <a href="#" class="btn-danger">Delete Admin</a>
-                </td>
-            </tr>
+            //count rows to check wheter we have foods or not
+            $count = mysqli_num_rows($res);
 
-            <tr>
-                <td>3.</td>
-                <td>Misogynist 23</td>
-                <td>Misogamist 26</td>
-                <td>
+            //create serial no.and setdefault value 1
+            $sn = 1;
 
-                    <a href="#" class="btn-secondary">Upadte Admin</a>
-                    <a href="#" class="btn-danger">Delete Admin</a>
+            $row = 0;
 
-                </td>
-            </tr>
+            if ($count) {
+                //we have foods , display them
+                //get the food from db and display
+                while ($row = mysqli_fetch_assoc($res)) {
+                    //get the valus from individual columns
+                    $id = $row['id'];
+                    $title = $row['title'];
+                    $price = $row['price'];
+                    $image_name = $row['image_name'];
+                    $featured = $row['featured'];
+                    $active = $row['active'];
+                    ?>
+
+
+
+                    <tr>
+                        <td><?php echo $sn++; ?></td>
+                        <td><?php echo $title; ?></td>
+                        <td>₹<?php echo $price; ?></td>
+                        <td>
+                            <?php
+                            //check wheter we have img or not 
+                            if ($image_name == "") {
+                                //we do nto have img dislpay error msg
+                                echo "<div class='error'> Image not added.</div>";
+                            } else {
+                                //we have img display it
+                            ?>
+
+                                <img src="<?php echo SITEURL; ?>/images/food/<?php echo $image_name; ?>" width="150">
+
+                                    <?php
+                                }
+                                    ?>
+                        </td>
+                        <td><?php echo $featured; ?></td>
+                        <td><?php echo $active; ?></td>
+
+                        <td>
+                            <a href="#" class="btn-secondary">Update Food</a>
+                            <a href="<?php echo SITEURL; ?>/admin/delete-food.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-danger">Delete Food</a>
+
+                        </td>
+                    </tr>
+            <?php
+
+                }
+            } else {
+                //food not addes in db
+                echo "<tr> <td colspan='7' class='error'>Food NOT aDDED yet. </td> </tr>";
+            }
+
+            ?>
+
         </table>
     </div>
 
