@@ -152,7 +152,7 @@
                             title = '$title',
                             featured = '$Featured',
                             active = '$active',
-                            image_name = '$image_name'
+                            image_name = '$image_name',
                           WHERE id = $id";
 
                 $res2 = mysqli_query($conn, $sql2);

@@ -31,6 +31,12 @@
             unset($_SESSION['unauthorize']);
         }
 
+        if(isset($_SESSION['update']))
+        {
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
+        }
+
         ?>
 
         <table class="tbl-full">
@@ -68,7 +74,7 @@
                     $title = $row['title'];
                     $price = $row['price'];
                     $image_name = $row['image_name'];
-                    $featured = $row['featured'];
+                    $Featured = $row['featured'];
                     $active = $row['active'];
                     ?>
 
@@ -94,11 +100,11 @@
                                 }
                                     ?>
                         </td>
-                        <td><?php echo $featured; ?></td>
+                        <td><?php echo $Featured; ?></td>
                         <td><?php echo $active; ?></td>
 
                         <td>
-                            <a href="#" class="btn-secondary">Update Food</a>
+                            <a href="<?php echo SITEURL; ?>/admin/update-food.php?id=<?php echo $id; ?>" class="btn-secondary">Update Food</a>
                             <a href="<?php echo SITEURL; ?>/admin/delete-food.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-danger">Delete Food</a>
 
                         </td>
@@ -108,7 +114,7 @@
                 }
             } else {
                 //food not addes in db
-                echo "<tr> <td colspan='7' class='error'>Food NOT aDDED yet. </td> </tr>";
+                echo "<tr> <td colspan='7' class='error'>Food NOT Added yet. </td> </tr>";
             }
 
             ?>
