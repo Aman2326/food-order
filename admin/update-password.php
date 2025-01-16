@@ -58,6 +58,7 @@ if (isset($_POST['submit'])) {
     $sql = "SELECT * FROM tbl_admin WHERE id=$id AND password='$current_password'";
     //exectuion of qurey here!
     $res = mysqli_query($conn, $sql);
+
     // var_dump($id,$current_password,$new_password,$confirm_password,$sql,$res );
     // exit();
     
@@ -68,7 +69,7 @@ if (isset($_POST['submit'])) {
         if ($count == 1) {
             //user exists and password can be chgned
             // echo "user found";
-            //check whether the new password & confirm matvh or not 
+            //check whether the new password & confirm match or not 
             if ($new_password == $confirm_password) {
                 //update the password 
                 $sql2 = "UPDATE tbl_admin SET
@@ -81,7 +82,6 @@ if (isset($_POST['submit'])) {
 
                 //chexk whter the query is executed or not 
                 if ($res2 == true) {
-                    //display the sucees msg
                     //redirect to manage admin page with error msg 
                     $_SESSION['change-paswrd'] = "<div class='error'>passsword change sucesfully. </div>";
                     //redirect the user 

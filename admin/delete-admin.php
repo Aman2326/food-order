@@ -20,7 +20,7 @@ if ($res == true) {
     //Redirect to manage admin page
     header('location:' . SITEURL . '/admin/manage-admin.php');
 } else {
-    //failed to delete admin 
+    
     // echo "Failed to delete admin";
 
     $_SESSION['delete'] = "Failed to Delete Admin. try again later.";
@@ -28,4 +28,3 @@ if ($res == true) {
 }
 
 
-//3. Redirect to manage admin age with message (success or error)

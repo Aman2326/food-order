@@ -3,7 +3,7 @@
 <div class="main-content">
     <div class="main-content">
         <div class="wrapper">
-            <h1>Update Category</h1>  <!-- Fixed the h1 tag closing -->
+            <h1>Update Category</h1>  
 
             <br><br>
 
@@ -152,7 +152,7 @@
                             title = '$title',
                             featured = '$Featured',
                             active = '$active',
-                            image_name = '$image_name',
+                            image_name = '$image_name'
                           WHERE id = $id";
 
                 $res2 = mysqli_query($conn, $sql2);

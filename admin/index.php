@@ -3,7 +3,7 @@
 <!-- Main Content Section Starts -->
 <div class="main-content">
     <div class="wrapper">
-        <h1>Dashboard</h1>
+        <h1> </h1>
         <br><br>
         <!-- <?php
         if (isset($_SESSION['login'])) {
@@ -13,30 +13,26 @@
         ?> -->
         <br><br>
 
-        <!-- Categories Section -->
+        <!--  Section -->
         <div class="col-4 text-center">
-            <h1>5</h1>
+            <h1>Hello</h1>
             <br />
-            categories
+            
         </div>
 
         <div class="col-4 text-center">
-            <h1>5</h1>
+            <h1>Welcome</h1>
             <br />
-            categories
+            
         </div>
 
         <div class="col-4 text-center">
-            <h1>5</h1>
+            <h1>Everyone</h1>
             <br />
-            categories
+            
         </div>
 
-        <div class="col-4 text-center">
-            <h1>5</h1>
-            <br />
-            categories
-        </div>
+        
 
 
 

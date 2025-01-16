@@ -93,9 +93,7 @@
             }
 
             //check whether the images is selected or not & set the value for img name accordingly.
-            //print_r($_FILES['image']);
-
-            //die(); //break the code herr
+            
             if (isset($_FILES['image']['name'])) {
                 //upload the image 
                 //to uplod image we need img name & source path and destination path
@@ -120,14 +118,13 @@
 
                     //finally upload the img
                     $upload = move_uploaded_file($source_path, $destination_path);
-                    // var_dump($upload);
-                    // exit();
+
                     //check whether the image upload or !
-                    //& if the img ! upload thn stop and redirect wirht error msg 
+                    //& if the img ! upload then stop and redirect with error msg. 
                     if ($upload == false) {
                         //set msg
                         $_SESSION['upload'] = "<div class='error'>Failed to upload image</div>";
-                        //redierct to add category pgre
+                        //redierct to add category page
                         header('loaction:' . SITEURL . '/admin/add-category.php');
                         //stop process
                         die();
@@ -151,7 +148,7 @@
 
             //4. check whther the query executed or not 
             if ($res == true) {
-                //query executede and category addes 
+                //query executede and category added 
                 $_SESSION['add'] = "<div class='sucess'>Added sucessfully.</div>";
                 //redirect to manage category page
                 header('location:' . SITEURL . '/admin/manage-category.php');

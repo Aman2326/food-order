@@ -121,7 +121,7 @@
         <?php
         //check whewter the button is clicked ot not
         if (isset($_POST['submit'])) {
-            //add the food in db
+            
             //echo "clicked";
 
             //1. get the data from the from
@@ -150,13 +150,13 @@
 
                 //check wheter the image is seleced or not and upload img only if selected
                 if ($image_name != ""); {
-                    //img is selected
+                   
                     //a. rename the img
                     //get the extension of selected img (jpg,pnh, gif etc)
                     $ext = end(explode('.', $image_name));
                     var_dump($ext);
                     //create a new name fr img 
-                    $image_name = "Food-Name" . rand(0000, 9999) . "." . $ext;  //new img name maybe like "Food-Name-657.jpg"
+                    $image_name = "Food-Name" . rand(0000, 9999) . "." . $ext;  
 
                     //b. upload the img
                     //get the src path and destination path
@@ -185,7 +185,7 @@
             }
 
             //3.insert into db
-            //create a sql query to save or add food
+            //create a sql query to save or add 
             //for numericl value we do nto need to pass value inside quotes '' but for string value it is compulsory to add quote''
 
             $sql2 = "INSERT INTO tbl_food SET
@@ -205,19 +205,19 @@
             if($res2 == true)
             {
                 //data inseerted successfully 
-                $_SESSION['add'] = "<div class='sucsess'>Food Added Successfully</div>";
+                $_SESSION['add'] = "<div class='sucsess'>Data Added Successfully</div>";
                 header('location:'.SITEURL.'/admin/manage-food.php');
                 echo "data is inserted";
 
             }
             else{
                 //failed to insert data 
-                $_SESSION['add'] = "<div class='error'>Failed to add food.</div>";
+                $_SESSION['add'] = "<div class='error'>Failed to add Data.</div>";
                 header('location:'.SITEURL.'/admin/manage-food.php');
                  
             }
 
-            //4. redirect with msg to manage food page
+            
         }
 
 

@@ -13,19 +13,26 @@
 
         //execute the query 
         $res = mysqli_query($conn, $sql);
+        //var_dump($res = mysqli_query($conn, $sql)); die;
+
 
         //check whether the query is executed or not 
         if ($res == true) {
+            
             //check whether the data is available or not 
             $count = mysqli_num_rows($res);
+            
             //check whether ew have admin data or not 
             if ($count == 1) {
+                
                 //get the details 
                 //echo "Admin Available";
                 $row = mysqli_fetch_assoc($res);
+                
 
                 $full_name = $row['full_name'];
                 $username = $row['username'];
+              
             } else {
                 //Redirect to manage Admin Page
                 header('location:' . SITEURL . '/admin/manage-admin.php');
@@ -60,21 +67,26 @@
 <?php
 //check whether the submit button is clicked or not
 if (isset($_POST['submit'])) {
+    
     //echo "button clicked";
     //get all the values from form to update
     $id = $_POST['id'];
     $full_name = $_POST['full_name'];
     $username = $_POST['username'];
+    
 
     //create a sql query to update admin
     $sql = "UPDATE tbl_admin SET
     full_name = '$full_name',
-    username = 'username'
+    username = '$username'
     WHERE id='$id'
     ";
 
     //execute the query
+    
     $res = mysqli_query($conn, $sql);
+    // var_dump($res); die;
+   
 
     //check whether the sql query executed succesfully or not 
     if ($res == true) {

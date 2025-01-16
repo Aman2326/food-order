@@ -35,7 +35,7 @@ if (isset($_GET['id'])) {
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>Update Food</h1>
+        <h1>Update Data</h1>
         <br><br>
 
         <form action="" method="POST" enctype="multipart/form-data">
@@ -93,34 +93,34 @@ if (isset($_GET['id'])) {
                             //query to get active categories
                             $sql = "SELECT * FROM tbl_category WHERE active='Yes'";
                             //execute the query
+                         
                             $res = mysqli_query($conn, $sql);
                             //count rows 
                             $count = mysqli_num_rows($res);
-
+                            // var_dump($count);die;
                             //chek wwheter the category available or not
                             if ($count > 0) {
                                 //category available
                                 while ($row = mysqli_fetch_assoc($res)) {
                                     $category_title = $row['title'];
-                                    $category_id = $row['if'];
+                                    $category_id = $row['id'];
 
-                                    //echo "<option value='$category_id'>$category_title</option>";
+                                    //echo "<option value='$category_id'>$category_title</option>"; 
                             ?>
-                                    <option value="<?php if ($current_category == $category_id) {
-                                                        echo "selected";
-                                                    } ?>"><?php echo $category_title ?></option>
+                            <option value="<?php echo $category_id; ?>" <?php if ($current_category == $category_id) { echo "selected"; } ?>><?php echo $category_title; ?></option>
+
                             <?php
                                 }
                             } else {
+                                // var_dump($category_title);
                                 //category not available 
-                                echo "<otption value ='0'>Category not available </opyion>";
+                                echo "<option value ='0'>Category not available </opyion>";
                             }
 
 
                             ?>
 
 
-                            <option value="0">Test Category</option>
 
 
                         </select>
@@ -164,14 +164,15 @@ if (isset($_GET['id'])) {
 
         if (isset($_POST['submit'])) {
             // echo "button clicked";
-
+            // var_dump($_POST);die;
             // 1. get all details from the form
+            //var_dump($_POST); 
             $id = $_POST['id'];
             $title = $_POST['title'];
             $description = $_POST['description'];
             $price = $_POST['price'];
             $current_image = $_POST['current_image'];
-            //var_dump($current_image = $_POST);die;
+            
             $category = $_POST['category'];
 
             $Featured = $_POST['featured'];
@@ -182,7 +183,7 @@ if (isset($_GET['id'])) {
             if (isset($_FILES['image']['name'])) {
                 //upload buton cklied
                 $image_name = $_FILES['image']['name']; //new img name
-
+                // var_dump($image_name);die;
                 //check whether th img is available or not 
                 if ($image_name != "") {
                     //image is availble
@@ -191,7 +192,7 @@ if (isset($_GET['id'])) {
 
                     //rename the image
                     $ext = @end(explode('.', $image_name)); //gets the extension of the image
-                    
+
                     $image_name = "Food-Name-" . rand(0000, 9999) . "." . $ext; //this will be renamed
 
                     //get the soucre path and destination path
@@ -212,32 +213,29 @@ if (isset($_GET['id'])) {
                     }
                     //3. remove the image if new image is uploaded and current image exist
                     //B. remove the current img if available C:\laragon\www\food-order-app\images\food\Food-Name-193.jpg
-               // Remove the current image if available
-                $remove_path = "../images/food/" . $current_image;
-                var_dump($remove_path);
-                // Print the path to ensure it's correct
-                echo "<br>Path to remove: " . $remove_path . "<br>";
+                    // Remove the current image if available
+                    $remove_path = "../images/food/" . $current_image;
+                    
+                    // echo "<br>Path to remove: " . $remove_path . "<br>";
 
-                // Check if the file exists before trying to unlink
-                if (file_exists($remove_path)) {
-                    // Remove the file
-                    $remove = unlink($remove_path);
+                    // Check if the file exists before trying to unlink
+                    if (file_exists($remove_path)) {
+                        // Remove the file
+                        $remove = unlink($remove_path);
 
-                    // Check if the file was successfully removed
-                    if ($remove) {
-                        echo "Image removed successfully.";
+                        // Check if the file was successfully removed
+                        if ($remove) {
+                            echo "Image removed successfully.";
+                            header('location:' . SITEURL . '/admin/manage-food.php');
+                        } 
                     } else {
-                        echo "Failed to remove the image.";
+                        echo "Image not found at path: " . $remove_path;
                     }
-                } else {
-                    echo "Image not found at path: " . $remove_path;
-                }
-
                 }
             }
 
 
-            
+            //var_dump($category);die;
             //4. update the food in db
             $sql3 = "UPDATE tbl_food SET
                   title='$title',
@@ -249,16 +247,14 @@ if (isset($_GET['id'])) {
                   active= '$active'
                   WHERE id=$id
                   ";
-                  var_dump($sql3); die;
+
             //execute the sql query
             $res3 = mysqli_query($conn, $sql3);
-            var_dump($res3 = mysqli_query($conn, $sql3));
-            die;
 
-            //check whether the query is executed or not 
+           //check whether the query is executed or not 
             if ($res3 == true) {
                 //query is executed and food updated
-                $_SESSION['update'] = "<div class='success'>food updated successfully.</div>";
+                $_SESSION['update'] = "<div class='success'>Data updated successfully.</div>";
                 header('loacation:' . SITEURL . '/admin/manage-food.php');
             } else {
                 //   failed to update food

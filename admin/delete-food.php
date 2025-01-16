@@ -2,6 +2,7 @@
 //session_start();
 include('../config/constants.php');
 
+
 //echo "redirect";
 
 
@@ -12,19 +13,21 @@ if (isset($_GET['id']) && isset($_GET['image_name'])) {
    //1.get id and image name
    $id = $_GET['id'];
    $image_name = $_GET['image_name'];
-   // var_dump($image_name);die;
+   
    //2.remove the image if available
    //check whether the image is available or not and delete only if available
    if($image_name !="");
+   
+
    {
      //it has image and need to remove from folder
-     //get the image is availble or not and delete only if available images\food\Food-Name7146.jpg
-   //   $path = "image/food/".$image_name;
-   //   $path = "../images/food/".$image_name;
+    
+   
    $path = "../images/food/".$image_name;
-      if (is_file($path)) {
+   
+      if (file_exists($path)) {
          unlink($path);
-         
+        
    $sql = "DELETE FROM  tbl_food WHERE id=$id";
    
    //excute the query
@@ -33,10 +36,9 @@ if (isset($_GET['id']) && isset($_GET['image_name'])) {
       } else {
         // die('Record');
       }
-      // var_dump($path);die;
-     //remove img file from folder
      
-     $remove = unlink($path);
+     
+     //$remove = unlink($path);
 
      //check whter the img removed or not 
      if($path==false)
@@ -57,7 +59,7 @@ if (isset($_GET['id']) && isset($_GET['image_name'])) {
    //check the query executed or not and set the session msg respectively
    //4.redirect to manage food with session msg
 
-   if($res==true)
+   //if($res==true)
    //var_dump(  if($res==true)); die;
    {
     //food deleted
@@ -65,7 +67,7 @@ if (isset($_GET['id']) && isset($_GET['image_name'])) {
     header('location:'.SITEURL.'/admin/manage-food.php');
 
    }
-   else
+  // else
    {
       //failed to delete food
    }

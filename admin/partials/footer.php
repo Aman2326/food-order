@@ -1,7 +1,7 @@
 <!-- Footer Section Starts -->
 <div class="footer">
     <div class="wrapper">
-        <p>2024 All Rights Reserved,Food House Developed By - <a href="#">Aman Rajbhar</a></p>
+        <p>2024 All Rights Reserved here is Basic login register of FOOD data CRUD Developed By - <a href="#">Aman R</a></p>
      
     </div>
 </div>

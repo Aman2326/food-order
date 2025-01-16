@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Login - Food order system</title>
+    <title>Login - FoodRecord system</title>
     <link rel="stylesheet" href="../css/admin.css">
 </head>
 
@@ -43,7 +43,7 @@
 
         <!-- login form ends here -->
 
-        <p class="text-center">created By - <a href="www.AmanRajbhar.com">Aman Rajbhar</a></p>
+        <p class="text-center">created By - <a href="linkedin.com/in/aman-rajbhar-401520313" target="_blank" style="text-decoration: none; color: blue;">Aman Rajbhar</a></p>
     </div>
 </body>
 

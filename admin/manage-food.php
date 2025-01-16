@@ -7,7 +7,7 @@
         <br />
 
 
-        <!-- Button to add admin -->
+        <!-- Button to add admin-->
         <a href="<?php echo SITEURL; ?>/admin/add-food.php" class="btn-primary">Add Food</a>
 
 

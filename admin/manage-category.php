@@ -119,8 +119,7 @@
                 }
             } else {
 
-                //we do not have data
-                //we well diaplay the msg inside the table 
+              
                 ?>
 
                 <tr>
